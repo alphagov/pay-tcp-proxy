@@ -1,0 +1,10 @@
+stream {
+    upstream web_server {
+        server SERVER_DNS:443;
+    }
+
+    server {
+        listen 443;
+        proxy_pass web_server;
+    }
+}
