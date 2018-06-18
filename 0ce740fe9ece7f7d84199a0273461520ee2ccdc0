@@ -67,3 +67,5 @@ staging-2.alpha_staging-2-2.date=2018-06-08:14:11:13
 staging-2.alpha_staging-2-2.status=success
 
 release.tag=alpha_release-3
+
+release.alpha_release-3.date=2018-06-18:07:01:49
