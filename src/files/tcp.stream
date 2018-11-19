@@ -1,6 +1,6 @@
 stream {
     server {
-        resolver 172.18.0.2; // Amazon VPC DNS
+        resolver 172.18.0.2; # Amazon VPC DNS
         listen 443;
 
         set $upstream SERVER_DNS:443;
