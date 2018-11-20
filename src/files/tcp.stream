@@ -1,9 +1,10 @@
 stream {
-    server {
-        resolver 172.18.0.2; # Amazon VPC DNS
-        listen 443;
+    upstream web_server {
+        server SERVER_DNS:443;
+    }
 
-        set $upstream SERVER_DNS:443;
-        proxy_pass $upstream;
+    server {
+        listen 443;
+        proxy_pass web_server;
     }
 }
