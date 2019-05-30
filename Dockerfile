@@ -1,12 +1,12 @@
-# govukpay/alpine:latest-master
-FROM govukpay/alpine@sha256:1200b7cfe9636e435f100b0f19e8bcdaccea4d5c1a073776ebe95f869705d57c
+# alpine:3.9
+FROM alpine@sha256:769fddc7cc2f0a1c35abb2f91432e8beecf83916c421420e6a6da9f8975464b6
 
 USER root
 
 RUN addgroup -S nginx \
     && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx
 
-RUN apk add --no-cache nginx nginx-mod-stream
+RUN ["apk", "add", "--no-cache", "nginx", "nginx-mod-stream"]
 
 # forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
