@@ -1,0 +1,5 @@
+# Ignore the files require by docker-compose for local testing
+local-testing-config/*
+docker-compose.yaml
+
+.git/
