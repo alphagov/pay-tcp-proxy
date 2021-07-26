@@ -3,8 +3,14 @@ stream {
         server SERVER_DNS:443;
     }
 
+    log_format proxy '$remote_addr [$time_local] '
+              '$protocol $status $bytes_sent $bytes_received '
+              '$session_time "$upstream_addr" '
+              '"$upstream_bytes_sent" "$upstream_bytes_received" "$upstream_connect_time"';
+
     server {
         listen 443;
+        access_log /var/log/nginx/access.log proxy;
         proxy_pass web_server;
     }
 }
