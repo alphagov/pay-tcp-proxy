@@ -6,9 +6,10 @@ services:
       - 443:443
     environment:
       - PAY_TCP_PROXY=pay-tcp-proxy
+      - PROXY_PROTOCOL=on
     volumes:
       - nginx-backend-ssl:/etc/ssl/self-signed-certs/
-      - ./local-testing-config/nginx-frontend.conf:/etc/nginx/nginx.conf
+      - ./local-testing-config/nginx-frontend.conf:/etc/nginx/nginx.conf.default
       - ./local-testing-config/entrypoint-frontend.sh:/entrypoint.sh
     entrypoint: /entrypoint.sh
     depends_on:
@@ -19,6 +20,7 @@ services:
       - 443
     environment:
       - SERVER_DNS=nginx-backend
+      - PROXY_PROTOCOL=on
     depends_on:
       - nginx-backend
   nginx-backend:
