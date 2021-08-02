@@ -9,10 +9,12 @@ sed -i "s,SERVER_DNS,${SERVER_DNS},g" $TCP_CONFIG
 
 PROXY_PROTOCOL=${PROXY_PROTOCOL:-off}
 if [ "$PROXY_PROTOCOL" = "on" ]; then
+  echo "Proxy protocol enabled"
   sed -i "s,PROXY_PROTOCOL,proxy_protocol,g" $TCP_CONFIG
   # shellcheck disable=SC2016
   sed -i 's,REMOTE_ADDR_LOG_FORMAT,$proxy_protocol_addr:$proxy_protocol_port $proxy_protocol_server_addr,g' $TCP_CONFIG
 elif [ "$PROXY_PROTOCOL" = "off" ]; then
+  echo "Proxy protocol disabled"
   sed -i "s,PROXY_PROTOCOL,,g" $TCP_CONFIG
   # shellcheck disable=SC2016
   sed -i 's,REMOTE_ADDR_LOG_FORMAT,$remote_addr,g' $TCP_CONFIG
@@ -21,4 +23,4 @@ else
   exit 1
 fi
 
-nginx -g "daemon off;"
+exec nginx -g "daemon off;"
