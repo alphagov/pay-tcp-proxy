@@ -1,5 +1,7 @@
 # pay-tcp-proxy
 
+> As of August 2021 this repository is no longer maintained by the GOV.UK Pay team.
+
 An Nginx proxy using the Nginx stream module to forward TCP traffic from
 a static address (NLB) to a service endpoint.
 
